@@ -8,6 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
         <!-- Styles -->
         <style>
@@ -64,37 +65,67 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+        <div class="">
+            <div class=""><nav class="navbar navbar-light bg-light">
+              <a class="navbar-brand" href="#"></a>
+            </nav></div>
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-sm-6">
+                    Section 1
+                    <div class="row">
+                      <div class="col">
+                            <div style="position:relative;">
+                            <iframe width="300" height="400" src="{{$latestvedio->vedio}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <a href="{{url('/admin/vedio/'.$latestvedio->id)}}" style="position:absolute; top:0; left:0; display:inline-block; width:500px; height:500px; z-index:5;"></a>
+                            </div>
+                            <h3><b>{{$latestvedio->title}}</b></h3>
+                  
+                      </div>
+                      <div class="col">
+                           <div class="row">
+                                @foreach($allvedio as $vedio)
+                                <div class="col">
+                                    <div style="position:relative;">
+                                        <iframe width="150" height="200" src="{{$vedio->vedio}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <a href="{{url('/admin/vedio/'.$vedio->id)}}" style="position:absolute; top:0; left:0; display:inline-block; width:500px; height:500px; z-index:5;"></a>
+                                    </div>
+                                    <h3><b>{{$vedio->title}}</b></h3>    
+                                </div>
+                                @endforeach
+                           </div>
+                      </div>
+                      <div class="w-100"></div>
+                      
+                    </div>
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="col-sm-1">
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="col">
+                    section 2
+                    <div class="row">
+                        <a href="{{url('/admin/photo/'.$latestphoto->id)}}"><img src="{{$latestphoto->photo}}"  width="600" height="400"></a>
+                        <h3><b>{{$latestphoto->title}}</b></h3>
+                    </div>
+                    <div class="row">
+                        @foreach($allphoto as $photo)
+                        <div class="col">
+                            <a href="{{url('/admin/photo/'.$photo->id)}}"><img src="{{$photo->photo}}"  width="300" height="200"></a>
+                            <h3><b>{{$photo->title}}</b></h3>
+                        </div>
+                        @endforeach
+                      </div>
                 </div>
-            </div>
+                <div class="w-100"></div>
+                
+              </div>
+            </div>  
+
+            
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     </body>
 </html>
